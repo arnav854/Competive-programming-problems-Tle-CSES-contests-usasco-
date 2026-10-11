@@ -3,23 +3,16 @@
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
 using namespace __gnu_pbds;
-template <class T>
-using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-template <class T>
-using ordered_multiset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
-typedef long long int ll;
-#define F first 
-#define S second   
-#define vi vector<int>
-#define dvi vector<vector < int >>
-#define vill vector<ll>
-#define dvill vector<vector <ll>>
-#define all(v) sort(v.begin(),v.end())
-#define rev_all(v) sort(v.begin(),v.end(), greater<int>())
-# define v_min(v) *min_element(v.begin() , v.end())
-#define v_max *max_element(v.begin() , v.end())
-# define v_min_f_idx min_element(v.begin() , v.end()) -v.begin()
-# define v_max_f_idx max_element(v.begin() , v.end()) -v.begin()
+
+using ordered_multiset = tree<
+    pair<int, int>,
+    null_type,
+    less<pair<int, int>>,
+    rb_tree_tag,
+    tree_order_statistics_node_update
+>;
+
+
 
 
 
@@ -33,7 +26,33 @@ typedef long long int ll;
     cin>> x ; \
 
 void solve() {
-    
+    int n ; cin >> n ;
+    ordered_multiset st;
+    int uid = 0 ;
+    vector < vector < int >> v (n , vector < int >(2)) ;    for (int i = 0 ; i <  n; i++){
+        for ( int j =0 ; j < 2 ; j++ ){
+            cin >> v[i][j] ;
+        }
+        st.insert({v[i][1] , uid}) ;
+        uid++ ;
+    }  
+    sort(v.begin() , v.end());
+    long long int  ans = 0 ; 
+    for ( int i = 0 ; i < n ; i++ ){
+        int x = v[i][1] ;
+        auto it = st.lower_bound({x, INT_MIN});
+        if (it != st.end() && it->first == x) {
+            int idx = st.order_of_key(*it);
+            if ( idx > 0 ){
+                ans += idx ;
+            }
+
+
+            st.erase(it);
+        }
+    }
+    cout << ans << endl ;
+
 }
 
 int main() {
