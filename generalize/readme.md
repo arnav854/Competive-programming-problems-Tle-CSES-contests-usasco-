@@ -66,3 +66,8 @@ This allows us to handle range updates efficiently without explicitly modifying 
 >**IDEA** dp is like see multiple states transition and then take decision and believe in ur state 
 
 --- 
+### 16. H16 
+>**IDEA** [codeforces](https://codeforces.com/problemset/problem/1776/L)we have 2 numbers and from 2 numbers we can take some amount to be positive and some to be negative so we need to make it 0 atlast so -> example : add ->+3 subs->4 and nums 5 , 9so  what i did -> +9 +9 +9 -9 -9 -9 -9 => val is then if i got neg that mean we need to replace 9 in such a way that (9-5)=> 4 will be reduced -> if val % 4 == 0 then we can think else no but if its % then how many negs are there if lesser yes else no 
+
+--- 
+### 17. H17 
