@@ -71,3 +71,19 @@ This allows us to handle range updates efficiently without explicitly modifying 
 
 --- 
 ### 17. H17 
+>**IDEA** If u see min and max think also binary search .
+
+---
+### 18. H18
+>**IDEA** when u see only two numbers like in binarys think as +1 -1 too gives u a lot of intutuion .
+
+---
+### 19.H19 
+>**IDEA** [codeforces](https://codeforces.com/problemset/problem/1404/A) what i think is that in this like since everything is same in each segment then if we move window everything has to be same the decrease char has to be incresed when we move so that mean s[i]==s[i+k] .
+
+---
+### 20.H20 
+>**IDEA** [codeforces(1300)](https://codeforces.com/problemset/problem/1178/B) in this problem what i was doing was that randomly like 3 * 2 * 3 and making things a messier but in my mind i know that for o check how many lefts w and right w and then adds up but idk why i was not able to do but overall this is applied its behave pivot so when things behave pivot and needs something from left and right make two array that starts from front and one of them start from back like that we will do .
+
+---
+### 21.H21 

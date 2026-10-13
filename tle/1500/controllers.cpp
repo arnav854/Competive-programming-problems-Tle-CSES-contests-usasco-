@@ -49,7 +49,7 @@ typedef long long int ll;
         int maxi = max ( a, b ) ;
         int mini = min (a , b ) ;
         int diff = maxi - mini  ;
-       ll val = 1LL * maxi * add - 1LL * maxi * subs;
+        ll val = 1LL * maxi * add - 1LL * maxi * subs;
         // cout << val << " " << diff << endl ; 
         if ( val == 0 ){
             cout << ye << endl ; 
