@@ -78,12 +78,105 @@ This allows us to handle range updates efficiently without explicitly modifying 
 >**IDEA** when u see only two numbers like in binarys think as +1 -1 too gives u a lot of intutuion .
 
 ---
-### 19.H19 
+### 19. H19 
 >**IDEA** [codeforces](https://codeforces.com/problemset/problem/1404/A) what i think is that in this like since everything is same in each segment then if we move window everything has to be same the decrease char has to be incresed when we move so that mean s[i]==s[i+k] .
 
 ---
-### 20.H20 
+### 20. H20 
 >**IDEA** [codeforces(1300)](https://codeforces.com/problemset/problem/1178/B) in this problem what i was doing was that randomly like 3 * 2 * 3 and making things a messier but in my mind i know that for o check how many lefts w and right w and then adds up but idk why i was not able to do but overall this is applied its behave pivot so when things behave pivot and needs something from left and right make two array that starts from front and one of them start from back like that we will do .
 
 ---
-### 21.H21 
+### 21. H21 
+>**IMPT** there is a thing that is graph storing , stored by list we do v<v<int>> v ok so in that there r eleements then store so SC ? it is O(2E) but isnt it to be O(N * 2E) no because overall space stored in this is O(n+2E) as if v<v<int>>(n,(n)) we do that in each of them total n so n thats how its seen like i know but confused so it mean total space taken overall .
+
+---
+### 22. H22 Go vs C++ pass by Value refrence and pass by value 
+>**IMPT** [leetcode](Number of Islands) in this what i was thinking that is can we do something like that is going to each of the index and then check its left and up and if 1 then same else may be no but it will be harder to know in which it lies if we take the pivot pt .
+```
+111
+001
+111
+```
+>so what we see is '1' looks upon its neighbour and after looking it sees ooh 1 now i m free everything is now on u making a chain kind of graph , second observation is everything is like which which 1 lies on 1 place and which one lies on 2nd place like same component u can say so we think dfs or dsu .
+
+---
+### 23. H23 Connected Cycle undirected graph Check 
+>**IDEA** What i was doing in this was that i was just not checking the parent 
+**WRONG CODE**
+```
+class Solution {
+  public:
+    bool dfs (  int i , vector < vector < int >> adj , vector < int > &v , int p ){
+        v[i] = 1 ; 
+       
+        for ( auto it : adj[i]){
+            if (v[it]==0){
+                dfs ( it ,  adj , v , i ) ;
+            }else if (it != p ){
+                return true ;
+            }
+        }
+        return  false ;
+    }
+    /*
+        0 1 2 
+        1 0 2 
+        2 0 1  3 
+        3 2 
+    */
+    bool isCycle(int v, vector<vector<int>>& e) {
+        // Code here
+        vector < vector < int >> adj (v) ;
+        for ( int i = 0 ; i < e.size() ; i++ ) {
+            adj[e[i][0]].push_back(e[i][1]);
+            adj[e[i][1]].push_back(e[i][0]);
+        }
+        vector < int > vis (v) ;
+        for ( int i = 0 ; i < v ; i++){
+            if (vis[i]==0){
+                if (dfs( i ,adj , vis ,-1 )) return true ;
+            }
+        }
+        return false ;
+    }
+};
+```
+>here i just thinking that first 0 made visited then 0 calls 1 and 2 at a same time and then 1 made vivited then 1 calls 2 and 2 calls 2 time at here and there but since 2 been changed in 1 and again the loop of this called by 0 it would not run by it bcz 2 has been visitd so we need parent by whom it is called . so from here for connected cycle we need parent too .
+```
+class Solution {
+  public:
+    bool dfs (  int i , vector < vector < int >> &adj , vector < int > &v , int p ){
+        v[i] = 1 ; 
+       
+        for ( auto it : adj[i]){
+            if (v[it]==0){
+                if (dfs ( it ,  adj , v , i ))return true  ;
+            }else if (it != p ){
+                return true ;
+            }
+        }
+        return  false ;
+    }
+    /*
+        0 1 2 
+        1 0 2 
+        2 0 1  3 
+        3 2 
+    */
+    bool isCycle(int v, vector<vector<int>>& e) {
+        // Code here
+        vector < vector < int >> adj (v) ;
+        for ( int i = 0 ; i < e.size() ; i++ ) {
+            adj[e[i][0]].push_back(e[i][1]);
+            adj[e[i][1]].push_back(e[i][0]);
+        }
+        vector < int > vis (v) ;
+        for ( int i = 0 ; i < v ; i++){
+            if (vis[i]==0){
+                if (dfs( i ,adj , vis ,-1 )) return true ;
+            }
+        }
+        return false ;
+    }
+};
+```
